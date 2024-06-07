@@ -35,7 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($penyakits as $row)
+                                @foreach ($penyakit as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->kode_penyakit }}</td>

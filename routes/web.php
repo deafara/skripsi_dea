@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenyakitController;
+use App\Http\Controllers\GejalaController;
+use App\Http\Controllers\DataDiriController;
+use App\Http\Controllers\DiagnosaController;
+use App\Http\Controllers\KnowledgeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +24,13 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('admin.index');
 });
+Route::get('/pengunjung', function () {
+    return view('pengunjung.index');
+});
+Route::get('/form-data-diri', [DataDiriController::class, 'showForm'])->name('form.data.diri');
+Route::get('/diagnosa', 'DiagnosaController@index')->name('pengunjung.diagnosa.diagnosa');
+// Route::post('/diagnosa', [DiagnosaController::class, 'submit'])->name('diagnosa.submit');
 
-Route::resource('penyakits', PenyakitController::class); 
+Route::resource('gejalas', GejalaController::class);
+Route::resource('penyakits', PenyakitController::class);
+Route::resource('knowledges', KnowledgeController::class);

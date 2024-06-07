@@ -21,7 +21,7 @@
 
                 <div class="form-group">
                     <label for="nama_penyakit">Nama Penyakit</label>
-                    <input type="nama_penyakit" class="form-control" id="nama_penyakit" name="nama_penyakit"
+                    <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit"
                         value="{{ $penyakit->nama_penyakit }}" required>
                 </div>
 
@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     <label for="solusi">Solusi:</label>
-                    <input type="solusi" class="form-control" id="solusi" name="solusi" value="{{ $penyakit->solusi }}"
+                    <input type="text" class="form-control" id="solusi" name="solusi" value="{{ $penyakit->solusi }}"
                         required>
                 </div>
 

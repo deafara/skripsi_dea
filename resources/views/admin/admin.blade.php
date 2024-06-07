@@ -54,7 +54,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="{{ route('gejalas.index') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Gejala</span></a>
         </li>
@@ -68,16 +68,16 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="{{ route('knowledges.index') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Aturan</span></a>
+                <span>Basis Pengetahuan</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
             <a class="nav-link" href="tables.html">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Pasien</span></a>
+                <span>Diagnosa</span></a>
         </li>
     </ul>
     <!-- End of Sidebar -->
