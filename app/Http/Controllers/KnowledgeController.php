@@ -29,19 +29,32 @@ class KnowledgeController extends Controller
     }
 
     public function edit($id)
-    {
-        $knowledge = Knowledge::findOrFail($id);
-        $penyakit = Penyakit::all();
-        $gejala = Gejala::all();
-        return view('admin.knowledge.edit', compact('knowledge', 'penyakit', 'gejala'));
-    }
+{
+    $knowledge = Knowledge::findOrFail($id);
+    $penyakitList = Penyakit::all(); // Get all penyakit
+    $gejalaList = Gejala::all(); // Get all gejala
 
-    public function update(Request $request, $id)
-    {
-        $knowledge = Knowledge::findOrFail($id);
-        $knowledge->update($request->all());
-        return redirect()->route('knowledges.index')->with('success', 'Data berhasil diperbarui');
-    }
+    return view('admin.knowledge.edit', compact('knowledge', 'penyakitList', 'gejalaList'));
+}
+
+
+
+public function update(Request $request, $id)
+{
+    $knowledge = Knowledge::findOrFail($id);
+
+    // Update the knowledge object with request data
+    $knowledge->update([
+        'id_penyakit' => $request->id_penyakit,
+        'id_gejala' => $request->id_gejala,
+        'MB' => $request->MB,
+        'MD' => $request->MD,
+    ]);
+
+    return redirect()->route('knowledges.index')->with('success', 'Data berhasil diperbarui');
+}
+
+
 
     public function destroy(Knowledge $knowledge)
     {

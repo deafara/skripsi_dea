@@ -38,8 +38,8 @@
                                 @foreach ($knowledges as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $row->penyakits->id_penyakit }}</td>
-                                        <td>{{ $row->gejalas->id_gejala }}</td>
+                                        <td>{{ $row->penyakit ? $row->penyakit->kode_penyakit . ' - ' . $row->penyakit->nama_penyakit : 'Data tidak ditemukan' }}</td>
+                                        <td>{{ $row->gejala ? $row->gejala->kode_gejala . ' - ' . $row->gejala->nama_gejala : 'Data tidak ditemukan' }}</td>
                                         <td>{{ $row->MB }}</td>
                                         <td>{{ $row->MD }}</td>
                                         <td>
@@ -71,11 +71,11 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addKnowledgeModalLabel">Tambah Knowlegde</h5>
+                        <h5 class="modal-title" id="addKnowledgeModalLabel">Tambah Knowledge</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('knowledges.store') }}" method="POST" id="addKnowlegdeForm">
+                        <form action="{{ route('knowledges.store') }}" method="POST" id="addKnowledgeForm">
                         @csrf
                         <div class="mb-3">
                             <div class="form-group">
@@ -103,7 +103,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="MB" class="form-label">MB</label>
-                            <input type="text" class="form-control" id="MB" name="MB">
+                            <input type="text" class="form-control" id="MB" name="MB" required>
                         </div>
                         <div class="mb-3">
                             <label for="MD" class="form-label">MD</label>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-danger" onclick="deleteKnowlegde()">Hapus</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteKnowledge()">Hapus</button>
                     </div>
                 </div>
             </div>

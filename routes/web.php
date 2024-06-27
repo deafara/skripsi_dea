@@ -28,7 +28,8 @@ Route::get('/pengunjung', function () {
     return view('pengunjung.index');
 });
 Route::get('/form-data-diri', [DataDiriController::class, 'showForm'])->name('form.data.diri');
-Route::get('/diagnosa', 'DiagnosaController@index')->name('pengunjung.diagnosa.diagnosa');
+Route::get('/diagnosa/{id}', [DiagnosaController::class, 'index'])->name('form.data.diri');
+// Route::get('/diagnosa', 'DiagnosaController@index')->name('diagnosa');
 // Route::post('/diagnosa', [DiagnosaController::class, 'submit'])->name('diagnosa.submit');
 
 Route::resource('gejalas', GejalaController::class);

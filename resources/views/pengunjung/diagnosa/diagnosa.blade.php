@@ -3,33 +3,58 @@
 @section('title', 'Form Diagnosa')
 
 @section('content')
-<section id="form-diagnosa" class="form-diagnosa section">
-  <div class="container" data-aos="fade-up">
-    <div class="section-title">
-      <h2>Form Diagnosa</h2>
-    </div>
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
-        @if(session('success'))
-          <div class="alert alert-success">
-            {{ session('success') }}
-          </div>
-        @endif
-        <form action="" method="POST" class="php-email-form">
-          @csrf
-          <input type="hidden" name="data_diri_id" value="{{ $dataDiriId }}">
-          <div class="row gy-4">
-            <div class="col-12">
-              <label for="symptoms">Gejala yang Dialami</label>
-              <textarea name="symptoms" id="symptoms" class="form-control" rows="5" required></textarea>
+    <section id="form-diagnosa" class="form-diagnosa section">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Form Diagnosa</h2>
             </div>
-            <div class="col-12 text-center">
-              <button type="submit" class="btn btn-primary">Kirim</button>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <form action="" method="POST" class="php-email-form">
+                        @csrf
+                        <input type="hidden" name="data_diri_id" value="{{ $dataDiriId }}">
+                        <div class="row gy-4">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Gejala</th>
+                                                <th>Pilihan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($gejala as $row)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>Apakah {{ $row->nama_gejala }} ?</td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            {{-- <label for="diagnosa">Apakah Anda setuju?</label> --}}
+                                                            <select class="form-control" id="diagnosa" name="diagnosa">
+                                                                <option value="iya">Iya</option>
+                                                                <option value="tidak">Tidak</option>
+                                                            </select>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+        </div>
+    </section>
 @endsection

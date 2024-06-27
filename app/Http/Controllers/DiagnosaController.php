@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Diagnosa;
+use App\Models\Gejala;
 
 class DiagnosaController extends Controller
 {
     public function index($dataDiriId)
     {
-        return view('pengunjung.diagnosa.diagnosa', ['dataDiriId' => $dataDiriId]);
+        $gejala = Gejala::all();
+        return view('pengunjung.diagnosa.diagnosa', [
+            'gejala' => $gejala,
+            'dataDiriId' => $dataDiriId,
+        ]);
+        // return view('pengunjung.diagnosa.diagnosa');
+
     }
 
     public function submit(Request $request)

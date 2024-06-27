@@ -12,14 +12,14 @@ class Knowledge extends Model
     protected $table = 'knowledges';
     protected $fillable = ['id_penyakit', 'id_gejala', 'MB', 'MD'];
 
-    public function penyakits()
+    public function penyakit()
     {
-        return $this->belongsTo(Penyakit::class, 'id_penyakit', 'id');
+        return $this->belongsTo(Penyakit::class, 'id_penyakit');
     }
 
-    public function gejalas()
+    public function gejala()
     {
-        return $this->belongsTo(Gejala::class, 'id_gejala', 'id');
+        return $this->belongsTo(Gejala::class, 'id_gejala');
     }
 
 }
