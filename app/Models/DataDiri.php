@@ -9,10 +9,9 @@ class DataDiri extends Model
 {
     use HasFactory;
 
+    protected $table = 'data_diris';
+
     protected $fillable = [
-        'name',
-        'age',
-        'gender',
-        'address',
+        'name', 'no_telp', 'address', 'tanggal'
     ];
 }

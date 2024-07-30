@@ -13,7 +13,7 @@
         <h1>Sistem Pakar Diagnosa Penyakit Gigi</h1>
         <p></p>
         <div class="d-flex">
-            <a href="{{ route('form.data.diri') }}" class="btn-get-started">Diagnosa</a>
+            <a href="{{ route('form_data_diri') }}" class="btn-get-started">Diagnosa</a>
         </div>
       </div>
       <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
@@ -52,7 +52,7 @@
 </section><!-- /About Section -->
 
 <!-- Why Us Section -->
-<section id="why-us" class="section why-us" data-builder="section">
+{{-- <section id="why-us" class="section why-us" data-builder="section">
   <div class="container-fluid">
     <div class="row gy-4">
       <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-</section><!-- /Why Us Section -->
+</section><!-- /Why Us Section --> --}}
 
 <!-- Services Section -->
 <section id="services" class="services section">
@@ -113,7 +113,7 @@
 
 <!-- Call To Action Section -->
 <section id="call-to-action" class="call-to-action section">
-  <img src="{{ asset('template/pengunjung/img/tentang_kami.jpg') }}" alt="">
+  <img src="" alt="">
   <div class="container">
     <div class="row" data-aos="zoom-in" data-aos-delay="100">
       <div class="col-xl-9 text-center text-xl-start"></div>
@@ -123,7 +123,7 @@
 </section><!-- /Call To Action Section -->
 
 <!-- Contact Section -->
-<section id="contact" class="contact section">
+{{-- <section id="contact" class="contact section">
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <h2>Contact</h2>
@@ -167,6 +167,6 @@
       </div><!-- End Contact Form -->
     </div>
   </div>
-</section><!-- /Contact Section -->
+</section><!-- /Contact Section --> --}}
 
 @endsection

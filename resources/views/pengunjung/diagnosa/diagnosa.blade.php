@@ -15,7 +15,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <form action="" method="POST" class="php-email-form">
+                    <form action="{{ route('calculate') }}" method="POST">
                         @csrf
                         <input type="hidden" name="data_diri_id" value="{{ $dataDiriId }}">
                         <div class="row gy-4">
@@ -36,11 +36,12 @@
                                                     <td>Apakah {{ $row->nama_gejala }} ?</td>
                                                     <td>
                                                         <div class="form-group">
-                                                            {{-- <label for="diagnosa">Apakah Anda setuju?</label> --}}
-                                                            <select class="form-control" id="diagnosa" name="diagnosa">
-                                                                <option value="iya">Iya</option>
-                                                                <option value="tidak">Tidak</option>
+                                                            <select class="form-control" id="diagnosa"
+                                                                name="gejala[{{ $row->id }}]">
+                                                                <option value="tidak" read-only>Tidak</option>
+                                                                <option value="iya|{{ $row->id }}">Iya</option>
                                                             </select>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
