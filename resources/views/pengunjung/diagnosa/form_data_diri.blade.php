@@ -45,3 +45,11 @@
         </div>
     </section>
 @endsection
+
+@section('scripts')
+    <script>
+        document.getElementById('selanjutnya-button').addEventListener('click', function() {
+            document.getElementById('form-data-diri-form').submit();
+        });
+    </script>
+@endsection

@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('no_telp');
+            $table->string('address');
+            $table->string('tanggal');
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\DataDiriController;
@@ -20,28 +20,37 @@ use App\Http\Controllers\HistoryController;
 |
 */
 
+// Halaman Welcome
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin', function () {
-    return view('admin.index');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.admin');
+    })->name('admin.admin');
+
+    // Rute Resource untuk Admin
+    Route::resource('gejalas', GejalaController::class);
+    Route::resource('penyakits', PenyakitController::class);
+    Route::resource('knowledges', KnowledgeController::class);
+    Route::resource('histories', HistoryController::class);
 });
+
+// Halaman Pengunjung
 Route::get('/pengunjung', function () {
     return view('pengunjung.index');
 });
 
-// Rute untuk form data diri
+// Rute untuk Form Data Diri
 Route::get('/form-data-diri', [DataDiriController::class, 'create'])->name('form_data_diri');
 Route::post('/data_diri', [DataDiriController::class, 'store'])->name('data_diri.store');
 
-// Rute untuk diagnosa
+// Rute untuk Diagnosa
 Route::get('/diagnosa/{dataDiriId}', [DiagnosaController::class, 'index'])->name('diagnosa');
 Route::post('hitung-diagnosa', [DiagnosaController::class, 'calculate'])->name('calculate');
 
-// Route lainnya
-Route::get('login', [LoginController::class, 'create'])->name('login');
-Route::post('login', [LoginController::class, 'store']);
-Route::resource('gejalas', GejalaController::class);
-Route::resource('penyakits', PenyakitController::class);
-Route::resource('knowledges', KnowledgeController::class);
-Route::resource('histories', HistoryController::class);
+// Rute Autentikasi
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
