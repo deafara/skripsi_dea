@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataDiri;
+use App\Models\Gejala;
 
 class DataDiriController extends Controller
 {
     public function create()
     {
-        return view('pengunjung.diagnosa.form_data_diri');
+        $gejala = Gejala::all();
+        $data['gejala'] = $gejala;
+        return view('pengunjung.diagnosa.form_data_diri',$data);
     }
 
     public function store(Request $request)

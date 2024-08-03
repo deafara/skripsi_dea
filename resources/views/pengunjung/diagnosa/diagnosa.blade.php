@@ -17,7 +17,7 @@
                     @endif
                     <form action="{{ route('calculate') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="data_diri_id" value="{{ $dataDiriId }}">
+                        {{-- <input type="hidden" name="data_diri_id" value="{{ $dataDiriId }}"> --}}
                         <div class="row gy-4">
                             <div class="col-12">
                                 <div class="table-responsive">

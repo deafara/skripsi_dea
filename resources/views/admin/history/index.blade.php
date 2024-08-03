@@ -31,20 +31,33 @@
                                     <th>No Telepon</th>
                                     <th>Alamat</th>
                                     <th>Tanggal Diagnosa</th>
-                                    <th>Kode penyakit</th>
                                     <th>Nama Penyakit</th>
+                                    <th>Gejala yang di rasakan</th>
                                     <th>Persentase</th>
                                     <th>Solusi</th>
-                                    <th>Aksi</th>
+
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                @foreach ($gejala as $row)
+                            <tbody>
+                                @foreach ($histori as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $row->kode_gejala }}</td>
-                                        <td>{{ $row->nama_gejala }}</td>
+                                        <td>{{ $row->datadiri->name }}</td>
+                                        <td>{{ $row->datadiri->no_telp }}</td>
+                                        <td>{{ $row->datadiri->address }}</td>
+                                        <td>{{ $row->datadiri->tanggal }}</td>
+                                        <td>{{ $row->penyakit->nama_penyakit }}</td>
+                                        @php
+                                            $datagejala = App\Models\Hasil::where('id_diagnosa', $row->id)->get();
+                                        @endphp
                                         <td>
+                                            @foreach ($datagejala as $gejala)
+                                                <p>{{ $gejala->gejala->nama_gejala }}</p>
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $row->presentase }}%</td>
+                                        <td>{{ $row->penyakit->solusi }}</td>
+                                        {{-- <td>
                                             <div class="btn-group">
                                                         <a href="{{ route('gejalas.edit', $row->id) }}"
                                                             class="btn btn-primary">Edit</a>
@@ -57,10 +70,10 @@
                                                                 onclick="confirmDelete({{ $row->id }})">Hapus</button>
                                                         </form>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>
