@@ -41,6 +41,10 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/pengunjung', function () {
     return view('pengunjung.index');
 });
+ Route::get('/pengunjung/hasil', function () {
+    return view('pengunjung.diagnosa.hasil');
+});
+Route::get('cetak-pdf/{id}',[DiagnosaController::class,'cetak'])->name('cetak-pdf');
 
 // Rute untuk Form Data Diri
 Route::get('/form-data-diri', [DataDiriController::class, 'create'])->name('form_data_diri');
@@ -49,6 +53,8 @@ Route::post('/data_diri', [DataDiriController::class, 'store'])->name('data_diri
 // Rute untuk Diagnosa
 Route::get('/diagnosa/{dataDiriId}', [DiagnosaController::class, 'index'])->name('diagnosa');
 Route::post('hitung-diagnosa', [DiagnosaController::class, 'calculate'])->name('calculate');
+
+
 
 // Rute Autentikasi
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');

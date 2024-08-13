@@ -145,7 +145,7 @@ class KnowledgeSeeder extends Seeder
             'id_penyakit'=>9,
             'id_gejala'=>20,
             'MB'=>'0,8',
-            'MD'=>'0,1',
+            'MD'=>'0,2',
         ]);
         Knowledge::create([
             'id_penyakit'=>10,

@@ -52,7 +52,7 @@
                                         @endphp
                                         <td>
                                             @foreach ($datagejala as $gejala)
-                                                <p>{{ $gejala->gejala->nama_gejala }}</p>
+                                                <p>{{ $gejala->gejala->nama_gejala }},</p>
                                             @endforeach
                                         </td>
                                         <td>{{ $row->presentase }}%</td>

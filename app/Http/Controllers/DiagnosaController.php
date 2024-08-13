@@ -8,6 +8,7 @@ use App\Models\Gejala;
 use App\Models\Penyakit;
 use App\Models\DataDiri;
 use App\Models\Hasil;
+use App\Models\HasilPenyakit;
 use PDF;
 
 
@@ -165,7 +166,16 @@ class DiagnosaController extends Controller
         "gejala" => $data_gejala,
         "kesimpulan" => $cf[$arr_keys[$index]]
     ];
-// dd($hasil['kesimpulan']['value'] * 100);
+    $names = array_column($cf, 'name');
+    $presentase = array_column($cf, 'value');
+
+// Mengalikan setiap elemen dalam array dengan 100
+    $hitungpresentase = array_map(function($value) {
+        return $value * 100;
+    }, $presentase);
+
+    // dd($hitungpresentase);
+
     // Pastikan pembuatan DataDiri dan Diagnosa hanya dilakukan sekali
     $datadiri = DataDiri::updateOrCreate(
         ['name' => $request->name, 'no_telp' => $request->no_telp, 'address' => $request->address, 'tanggal' => $request->tanggal],
@@ -195,12 +205,38 @@ class DiagnosaController extends Controller
                 );
             }
         }
+        foreach ($names as $key => $nama_penyakit) {
+            $caripenyakit = Penyakit::where('nama_penyakit', $nama_penyakit)->first();
+            if ($caripenyakit) {
+                HasilPenyakit::updateOrCreate(
+                    [
+                        'id_diagnosa' => $tambahdiagnosa->id,
+                        'id_penyakit' => $caripenyakit->id,
+                    ],
+                    ['presentase' => $hitungpresentase[$key]]  // Akses nilai yang benar dari array
+                );
+            }
+        }
+
     }
 
-    $pdf = PDF::loadView('pengunjung.diagnosa.pdf', ['data' =>  $hasil , 'cf' => $cf, 'datadiri' => $datadiri])
-        ->setPaper('a4', 'portrait');
+    // $pdf = PDF::loadView('pengunjung.diagnosa.pdf', ['data' =>  $hasil , 'cf' => $cf, 'datadiri' => $datadiri])
+    //     ->setPaper('a4', 'portrait');
+
+    // return $pdf->stream();
+    $caridatahasil = Diagnosa::where('id_datadiri',$datadiri->id)->first();
+    $data['hasil'] = $caridatahasil;
+    // dd($caridatahasil);
+    return view('pengunjung.diagnosa.hasil',$data);
+}
+public function cetak($id)  {
+    $data = Diagnosa::where('id',$id)->first();
+    // dd($data);
+    $pdf = PDF::loadView('pengunjung.diagnosa.pdf', ['data' =>  $data])
+            ->setPaper('a4', 'portrait');
 
     return $pdf->stream();
+
 }
 
 
